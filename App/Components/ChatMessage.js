@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import GravatarApi from 'gravatar-api';
 
@@ -9,7 +9,7 @@ const ChatMessage = ({ chatMessage }) => {
 		parameters: { size: '50', d: 'monsterid' }
 	}).replace('http', 'https');
 
-	const messages = ({ item }) => (
+	return (
 		<View
 			style={{
 				flex: 1,
@@ -19,14 +19,8 @@ const ChatMessage = ({ chatMessage }) => {
 				maxHeight: 60
 			}}
 		>
-			<Text>{item.message}</Text>
+			<Text>{chatMessage.message}</Text>
 			<Image style={styles.roundedProfileImage} source={{ uri: avatarUrl }} />
-		</View>
-	);
-
-	return (
-		<View>
-			<FlatList data={[chatMessage]} renderItem={messages} />
 		</View>
 	);
 };
