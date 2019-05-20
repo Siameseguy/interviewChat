@@ -36,7 +36,7 @@ class AddNewMessage extends Component {
 					style={{ flex: 1 }}
 					color="#841584"
 					title="submit"
-					onPress={this.props.handleSubmit}
+					onPress={() => this.props.handleSubmit(this.state)}
 				>
 					Press Me!
 				</Button>
@@ -53,21 +53,20 @@ const styles = StyleSheet.create({
 	}
 });
 
-const dispatchProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
-		handleSubmit: () => {
+		handleSubmit: state => {
 			const newMessage = {
-				user_email: this.state.email,
-				message: this.state.content
+				user_email: state.email,
+				message: state.content
 			};
 
 			dispatch(addMoreChatsSaga(newMessage));
-			alert('got here');
 		}
 	};
 };
 
 export default connect(
 	null,
-	dispatchProps
+	mapDispatchToProps
 )(AddNewMessage);
