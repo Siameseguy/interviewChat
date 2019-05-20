@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import GravatarApi from 'gravatar-api';
+
+import MessageCard from './MessageCard';
 
 const ChatMessage = ({ chatMessage }) => {
 	const avatarUrl = GravatarApi.imageUrl({
@@ -9,18 +11,30 @@ const ChatMessage = ({ chatMessage }) => {
 		parameters: { size: '50', d: 'monsterid' }
 	}).replace('http', 'https');
 
+	let keyExtractor = index => index.toString();
+
+	function filterMessage(str) {
+		let strArr = str.split(' ');
+		for (var i = 0; i < strArr.length; i++) {
+			if (strArr[i].length === 4) {
+				strArr[i] = '****';
+			}
+		}
+		return strArr.join(' ');
+	}
+
 	return (
-		<View
-			style={{
-				flex: 1,
-				flexDirection: 'row',
-				alignSelf: 'flex-end',
-				height: 60,
-				maxHeight: 60
-			}}
-		>
-			<Text>{chatMessage.message}</Text>
-			<Image style={styles.roundedProfileImage} source={{ uri: avatarUrl }} />
+		<View>
+			<FlatList
+				data={[chatMessage]}
+				keyExtractor={keyExtractor}
+				renderItem={({ item }) => (
+					<MessageCard
+						message={filterMessage(item.message)}
+						avatar={avatarUrl}
+					/>
+				)}
+			/>
 		</View>
 	);
 };
