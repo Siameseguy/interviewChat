@@ -8,24 +8,24 @@ const MesssageCard = props => {
 				style={{
 					flex: 1,
 					flexDirection: 'row',
-					alignSelf: 'flex-end',
-					padding: 5
+					alignSelf: 'flex-end'
 				}}
 			>
-				<Text style={styles.chatBubble}>{props.message}</Text>
+				<Text
+					style={
+						props.user_email === 'johnDoe@emailcom'
+							? styles.userChatBubble
+							: styles.chatBubble
+					}
+				>
+					{props.message}
+				</Text>
 				<Image
 					style={styles.roundedProfileImage}
 					source={{ uri: props.avatar }}
 				/>
 			</View>
-			<View
-				style={{
-					flexDirection: 'column',
-					width: '100%',
-					alignself: 'center',
-					justifyContent: 'center'
-				}}
-			>
+			<View>
 				<Text>{getDate()}</Text>
 			</View>
 		</View>
@@ -44,6 +44,16 @@ const styles = StyleSheet.create({
 
 	chatBubble: {
 		backgroundColor: '#008000',
+		padding: 10,
+		color: '#fff',
+		borderColor: 'black',
+		borderRadius: 5,
+		overflow: 'hidden',
+		margin: 5
+	},
+
+	userChatBubble: {
+		backgroundColor: 'blue',
 		padding: 10,
 		color: '#fff',
 		borderColor: 'black',

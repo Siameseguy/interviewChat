@@ -11,8 +11,6 @@ const ChatMessage = ({ chatMessage }) => {
 		parameters: { size: '50', d: 'monsterid' }
 	}).replace('http', 'https');
 
-	let keyExtractor = index => index.toString();
-
 	filterMessage = str => {
 		let strArr = str.split(' ');
 		for (var i = 0; i < strArr.length; i++) {
