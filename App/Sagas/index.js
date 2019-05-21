@@ -11,7 +11,7 @@ const emails = [
 
 function* addChatsSaga() {
 	while (true) {
-		yield delay(1000);
+		yield delay(5000);
 		const email = emails[Math.floor(Math.random() * emails.length)];
 		yield put({
 			type: 'ADD_MESSAGE',

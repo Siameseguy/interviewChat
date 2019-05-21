@@ -2,18 +2,19 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
 const MesssageCard = props => {
+	console.log(props);
 	return (
 		<View>
 			<View
-				style={{
-					flex: 1,
-					flexDirection: 'row',
-					alignSelf: 'flex-end'
-				}}
+				style={
+					props.email === 'johnDoe@email.com'
+						? styles.userContainer
+						: styles.container
+				}
 			>
 				<Text
 					style={
-						props.user_email === 'johnDoe@emailcom'
+						props.email === 'johnDoe@email.com'
 							? styles.userChatBubble
 							: styles.chatBubble
 					}
@@ -33,6 +34,16 @@ const MesssageCard = props => {
 };
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		flexDirection: 'row',
+		alignSelf: 'flex-start'
+	},
+	userContainer: {
+		flex: 1,
+		flexDirection: 'row',
+		alignSelf: 'flex-end'
+	},
 	roundedProfileImage: {
 		width: 50,
 		height: 50,

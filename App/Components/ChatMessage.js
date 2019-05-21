@@ -37,6 +37,7 @@ const ChatMessage = ({ chatMessage }) => {
 			<MessageCard
 				message={filterMessage(chatMessage.message)}
 				avatar={avatarUrl}
+				email={chatMessage.user_email}
 				date={getDate}
 			/>
 		</View>
