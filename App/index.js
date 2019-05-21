@@ -6,12 +6,12 @@ import createSagaMiddleware from 'redux-saga';
 
 import ConnectedChatLog from './Containers/ConnectedChatLog';
 import SimpleChatApp from './Reducers';
-import { addChatsSaga, addMoreChatsSaga } from './Sagas';
+import addChatsSaga from './Sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(SimpleChatApp, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(addChatsSaga, addMoreChatsSaga);
+sagaMiddleware.run(addChatsSaga);
 
 export default class App extends React.Component {
 	render() {

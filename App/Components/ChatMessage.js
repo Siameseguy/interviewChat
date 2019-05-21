@@ -13,7 +13,7 @@ const ChatMessage = ({ chatMessage }) => {
 
 	let keyExtractor = index => index.toString();
 
-	function filterMessage(str) {
+	filterMessage = str => {
 		let strArr = str.split(' ');
 		for (var i = 0; i < strArr.length; i++) {
 			if (strArr[i].length === 4) {
@@ -21,19 +21,25 @@ const ChatMessage = ({ chatMessage }) => {
 			}
 		}
 		return strArr.join(' ');
-	}
+	};
+
+	getDate = () => {
+		let date = new Date().getDate();
+		let month = new Date().getMonth() + 1;
+		let year = new Date().getFullYear();
+		let hours = new Date().getHours(); //Current Hours
+		let min = new Date().getMinutes(); //Current Minutes
+		let ampm = hours >= 12 ? 'PM' : 'AM';
+
+		return `${month}-${date}-${year}, ${hours}:${min} ${ampm}`;
+	};
 
 	return (
 		<View>
-			<FlatList
-				data={[chatMessage]}
-				keyExtractor={keyExtractor}
-				renderItem={({ item }) => (
-					<MessageCard
-						message={filterMessage(item.message)}
-						avatar={avatarUrl}
-					/>
-				)}
+			<MessageCard
+				message={filterMessage(chatMessage.message)}
+				avatar={avatarUrl}
+				date={getDate}
 			/>
 		</View>
 	);

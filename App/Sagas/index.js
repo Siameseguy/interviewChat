@@ -9,9 +9,9 @@ const emails = [
 	'foo@bar.com'
 ];
 
-export function* addChatsSaga() {
+function* addChatsSaga() {
 	while (true) {
-		yield delay(50000);
+		yield delay(5000);
 		const email = emails[Math.floor(Math.random() * emails.length)];
 		yield put({
 			type: 'ADD_MESSAGE',
@@ -21,13 +21,4 @@ export function* addChatsSaga() {
 	}
 }
 
-export function* addMoreChatsSaga(message) {
-	while (true) {
-		yield delay(1000);
-		dispatch({
-			type: 'ADD_MESSAGE',
-			user_email: message.email,
-			message: message.cotent
-		});
-	}
-}
+export default addChatsSaga;

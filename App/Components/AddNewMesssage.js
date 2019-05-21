@@ -17,16 +17,15 @@ class AddNewMessage extends Component {
 		this.setState({ content: value });
 	};
 
+	handleSubmit = (email, message) => {
+		alert(this.state.email, this.state.content);
+	};
+
 	render() {
 		return (
 			<View style={styles.container}>
 				<TextInput
-					style={{
-						flex: 1,
-						height: 40,
-						borderColor: 'gray',
-						borderWidth: 1
-					}}
+					style={styles.textInput}
 					name="messageInput"
 					placeholder="..."
 					onChangeText={this.onChangeHandler}
@@ -37,9 +36,7 @@ class AddNewMessage extends Component {
 					color="#841584"
 					title="submit"
 					onPress={() => this.props.handleSubmit(this.state)}
-				>
-					Press Me!
-				</Button>
+				/>
 			</View>
 		);
 	}
@@ -50,6 +47,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		position: 'absolute'
+	},
+	textInput: {
+		flex: 1,
+		height: 40,
+		borderColor: 'gray',
+		borderWidth: 1
 	}
 });
 
